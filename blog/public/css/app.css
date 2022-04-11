@@ -1056,6 +1056,12 @@ select {
 .mb-4 {
   margin-bottom: 1rem;
 }
+.mt-0 {
+  margin-top: 0px;
+}
+.ml-auto {
+  margin-left: auto;
+}
 .mb-8 {
   margin-bottom: 2rem;
 }
@@ -1065,14 +1071,8 @@ select {
 .ml-10 {
   margin-left: 2.5rem;
 }
-.ml-auto {
-  margin-left: auto;
-}
 .-mt-px {
   margin-top: -1px;
-}
-.mt-0 {
-  margin-top: 0px;
 }
 .block {
   display: block;
@@ -1119,6 +1119,9 @@ select {
 .h-20 {
   height: 5rem;
 }
+.h-auto {
+  height: auto;
+}
 .h-80 {
   height: 20rem;
 }
@@ -1127,9 +1130,6 @@ select {
 }
 .h-72 {
   height: 18rem;
-}
-.h-auto {
-  height: auto;
 }
 .min-h-screen {
   min-height: 100vh;

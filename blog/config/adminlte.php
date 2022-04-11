@@ -249,7 +249,7 @@ return [
         [
             'text'        => 'Dashboard',
             'url'         => 'admin',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-tachometer-alt fa-fw',
         ],
         ['header' => 'account_settings'],
         [
