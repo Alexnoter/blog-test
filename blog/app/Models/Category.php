@@ -9,6 +9,15 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug'];
+
+    /* con esto hacemos que en los url no tome los id sino que mande el slug */
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
+
+    //relacion uno a  muchos
     public function posts()
     {
         return  $this->hasMany(Post::class);
