@@ -14,10 +14,20 @@ class PostsIndex extends Component
     use WithPagination;
     protected $paginationTheme = "bootstrap";
 
+    /*  */
+    public $search;
+
+    /* este metodo se activara cuando el valor de search cambie */
+    public function updatingSearch(){
+        $this->resetPage();
+    }
 
     public function render()
     {
-        $posts  = Post::where('user_id', auth()->user()->id)->latest('id')->paginate();
+        $posts  = Post::where('user_id', auth()->user()->id)
+                        ->where('name', 'LIKE', '%' . $this->search . '%')
+                        ->latest('id')
+                        ->paginate();
 
         return view('livewire.admin.posts-index', compact('posts'));
     }
