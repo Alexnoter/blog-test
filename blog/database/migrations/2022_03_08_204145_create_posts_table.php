@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
 
-            $table->text('extract');
-            $table->longText('body');
+            /* el metodo nullable es para indicar que estos dos campos pueden ser nulos */
+            $table->text('extract')->nullable();
+            $table->longText('body')->nullable();
 
             //en enum solo se usas para poner un valor int y se especifica los valore
             $table->enum('status',[1, 2])->default(1);
