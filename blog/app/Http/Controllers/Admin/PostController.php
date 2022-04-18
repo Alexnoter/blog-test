@@ -45,7 +45,13 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        return "validacion con exito";
+        $post = Post::create($request->all());
+        
+        /* aca preguntamos si mandamos informacion de etiqueta */
+        if ($request->tags) {
+            $post->tags()->attach($request->tags);
+        }
+        return redirect()->route('admin.posts.edit', $post);
     }
 
     /**
