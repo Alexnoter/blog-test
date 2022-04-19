@@ -10,7 +10,10 @@
     <div class="card">
         <div class="card-body">
             {{-- el atributo autocomplete es para desactvar el autocompletado --}}
-            {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off']) !!}
+
+            {{-- siempre que vayamos a mandar una imagen debemos habilitar el  envio de archivos 
+                en laravel collective  es de la siguiente manera --}}
+            {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
                 {!! Form::hidden('user_id', auth()->user()->id) !!}
 
@@ -79,6 +82,26 @@
                     @enderror
 
                 </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="image-wrapper">
+                            <img id="picture" src="https://cdn.pixabay.com/photo/2022/04/05/20/21/jack-russell-terrier-7114378_960_720.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            {!! Form::label('file', 'imagen que se mostrar en el post') !!}
+                            {!! Form::file('file', ['class' => 'form-control-file', 'accept' => 'image/*']) !!}
+
+                            @error('file')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam inventore, ipsa ad dolore in recusandae accusantium, blanditiis dolorem, cumque repellendus debitis laboriosam ratione iusto fugiat at culpa. Iure, consectetur ullam.</p>
+                    </div>
+                </div>
 {{-- ------------------------------------------------- --}}
                 <div class="form-group">
                     {!! Form::label('extract', 'Extracto') !!}
@@ -106,7 +129,18 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <style>
+        .image-wrapper{
+            position: relative;
+            padding-bottom: 56.25%;
+        }
+        .image-wrapper img{
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 @stop
 
 @section('js')
@@ -135,6 +169,19 @@
         .catch( error => {
             console.error( error );
         } );
+
+        //cambiar imagen y visualizar en pantalla
+        document.getElementById("file").addEventListener('change', cambiarImagen);
+
+        function cambiarImagen(event) {
+            var file = event.target.files[0];
+
+            var reader = new FileReader();
+            reader.onload = (event) => {
+                document.getElementById("picture").setAttribute('src', event.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
     </script>
     
 @endsection
