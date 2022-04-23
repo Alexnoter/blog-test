@@ -27,6 +27,7 @@
                                 <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
+
                                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                 </form>
                             </td>
