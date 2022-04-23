@@ -121,9 +121,9 @@ class PostController extends Controller
             }
         }
 
-        /* aca preguntamos si mandamos informacion de etiqueta */
+        /* el metodo sync sincroniza la coleccion que le digamos */
         if ($request->tags) {
-            $post->tags()->attach($request->tags);
+            $post->tags()->sync($request->tags);
         }
 
         return redirect()->route('admin.posts.edit', $post)->with('info', 'El post se actualizo correctamente');
