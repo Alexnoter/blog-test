@@ -86,7 +86,12 @@ class PostController extends Controller
      */
     public function edit (Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        /* el metodo pluck me trae todos los array pero solo tomara el valor que le esquecifiquemos en parentesis
+        en este caso  sera los name y el segundo valor sera la llave del objeto*/
+        $categories = Category::pluck('name', 'id');
+        $tags =Tag::all();
+
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
