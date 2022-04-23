@@ -86,6 +86,10 @@ class PostController extends Controller
      */
     public function edit (Post $post)
     {
+        /* es una regla de validacion de policy para ver que si sea el usuario correcto */
+        $this->authorize('author', $post);
+
+
         /* el metodo pluck me trae todos los array pero solo tomara el valor que le esquecifiquemos en parentesis
         en este caso  sera los name y el segundo valor sera la llave del objeto*/
         $categories = Category::pluck('name', 'id');
@@ -103,6 +107,10 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        /* es una regla de validacion de policy para ver que si sea el usuario correcto */
+        $this->authorize('author', $post);
+
+
         $post->update($request->all());
 
         if ($request->file('file')) {
@@ -137,6 +145,10 @@ class PostController extends Controller
      */
     public function destroy (Post $post)
     {
+        /* es una regla de validacion de policy para ver que si sea el usuario correcto */
+        $this->authorize('author', $post);
+
+        
         $post->delete();
         return redirect()->route('admin.posts.index')->with('info', 'El post se eliminó correctamente');
     }

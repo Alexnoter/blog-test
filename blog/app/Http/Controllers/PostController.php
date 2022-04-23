@@ -22,6 +22,10 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        /* es una regla de validacion de policy para ver que si el post esta publicaco o en borrador 
+        proteje los datos*/
+        $this->authorize('published', $post);
+
         /* take me dice que solo me publicara 4 post */
         $similares = Post::where('category_id', $post->category_id)
                             ->where('status', 2)
